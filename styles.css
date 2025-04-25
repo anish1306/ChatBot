@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
 
 body {
     font-family: Arial, sans-serif;
@@ -55,67 +56,143 @@ body {
     display: flex;
     flex-direction: column;
     background: white;
-    padding: 20px;
+    padding: 20px; /* Adjust padding to fit the smaller size */
     overflow: hidden; /* Prevent scrolling in the chat container */
+    width: 100%; /* Set the width to 75% of the current size */
+    height: 100%; /* Set the height to 75% of the current size */
+    max-width: 800px; /* Optional: Set a maximum width */
+    max-height: 800px; /* Optional: Set a maximum height */
+    margin: auto; /* Center the container */
+    border-radius: 20px; /* Keep rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Keep the shadow */
 }
 
 #messages {
     flex: 1;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
     border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 4px;
     background-color: #fafafa;
+    overflow-y: auto;
 }
 
-.message {
-    margin: 5px 0;
-    padding: 8px 12px;
+#placeholder-text {
+    font-size: 24px; /* Make the text bigger */
+    font-weight: bold; /* Make the text bold */
+    color: #555;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+#messages {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch; /* Allow messages to stretch across the container */
+    position: relative;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
     border-radius: 4px;
-    max-width: 80%;
-    word-wrap: break-word;
+    background-color: #fafafa;
+    overflow-y: auto;
 }
 
 .user-message {
     align-self: flex-end;
-    background-color: #6c6f6f;
-    color: white;
+    background-color: #eeeeee;
+    color: rgb(0, 0, 0);
+    margin-bottom: 15px; /* Add space below the user's message */
+    padding: 12px; /* Add padding for better readability */
+    border-radius: 15px; /* Add curved corners similar to the input box */
+    border: 1px solid #ddd; /* Optional: Add a border for consistency */
+    max-width: 80%; /* Ensure the message doesn't stretch too wide */
+    word-wrap: break-word; /* Ensure long words wrap properly */
 }
 
 .bot-message {
-    align-self: flex-start;
-    background-color: #e9ecef;
+    align-self: stretch; /* Make the bot message take up the full width */
     color: black;
-    font-style: italic;
     border-left: 4px solid #8d8f91;
-    padding-left: 10px;
+    padding: 12px; /* Add padding for better readability */
+    border-radius: 8px; /* Add slightly rounded corners */
+    margin-bottom: 15px; /* Add space below the bot's message */
+    margin-top: 10px; /* Add space above the bot's message */
+    font-family: 'Open Sans', sans-serif; /* Use a clean and modern font */
+    font-size: 16px; /* Adjust font size for better readability */
+    line-height: 1.5; /* Add line height for better spacing between lines */
+    background-color: #f9f9f9; /* Add a subtle background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for a modern look */
 }
 
 #input-container {
     display: flex;
+    align-items: center;
     width: 100%;
+    padding: 10px 0;
 }
 
 #user-input {
     flex: 1;
-    padding: 10px;
+    padding: 15px; /* Add more padding for better spacing */
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 15px; /* Keep rounded corners */
     margin-right: 10px;
+    outline: none;
+    font-size: 16px; /* Increase font size for better readability */
+    font-family: 'Roboto', sans-serif; /* Use a clean and modern font */
+    background-color: white;
+    color: black;
+    resize: none; /* Disable resizing */
+    height: 40px; /* Set a consistent height */
+    transition: border-color 0.3s ease;
+}
+
+#user-input:focus {
+    border-color: #007bff; /* Highlight border on focus */
+}
+
+#send-button, #voice-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    margin-left: 5px;
 }
 
 #send-button {
-    padding: 10px 20px;
-    border: none;
     background-color: #007bff;
     color: white;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
 #send-button:hover {
-    background-color: #141f2a;
+    background-color: #0056b3;
+}
+
+#voice-button {
+    background-color: #adb5bd;
+    color: white;
+}
+
+#voice-button:hover {
+    background-color: #868e96;
 }
 
 #progress-bar {
@@ -138,8 +215,8 @@ body {
     100% { width: 100%; }
 }
 
-#send-button {
-    background-color: #adb5bd; /* Medium grey color */
+#clear-button {
+    background-color: #dc3545; /* Red color for the clear button */
     color: white;
     display: flex;
     justify-content: center;
@@ -148,32 +225,17 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-}
-
-#send-button:hover {
-    background-color: #868e96; /* Slightly darker grey for hover */
-}
-
-#send-button svg {
-    fill: white;
-}
-
-#voice-button {
-    background-color: #adb5bd; /* Medium grey color */
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 20px; /* Adjust font size for the mic icon */
     border: none;
     cursor: pointer;
     outline: none;
+    margin-left: 5px;
+    transition: background-color 0.3s ease;
 }
 
-#voice-button:hover {
-    background-color: #868e96; /* Slightly darker grey for hover */
+#clear-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+#clear-button svg {
+    fill: white;
 }

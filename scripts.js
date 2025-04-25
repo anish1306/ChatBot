@@ -1,49 +1,56 @@
 async function sendMessage() {
-    const userInput = document.getElementById('user-input').value;
+    const userInput = document.getElementById('user-input').value.trim();
     if (!userInput) return;
 
+    // Hide the placeholder text if it's visible
+    const placeholder = document.getElementById('placeholder-text');
+    if (placeholder) {
+        placeholder.style.display = 'none';
+    }
+
+    // Add the user's message to the chat
+    const messagesContainer = document.getElementById('messages');
     const userMessage = document.createElement('div');
     userMessage.className = 'message user-message';
     userMessage.textContent = userInput;
-    document.getElementById('messages').appendChild(userMessage);
+    messagesContainer.appendChild(userMessage);
 
+    // Clear the input box
     document.getElementById('user-input').value = '';
 
+    // Show the progress bar
     const progressBar = document.getElementById('progress-bar');
     const progressBarFill = progressBar.firstElementChild;
     progressBar.style.display = 'block';
     progressBarFill.style.width = '0%';
 
-    const response = await fetch('http://localhost:3000/chat', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ message: userInput })
-    });
+    try {
+        // Fetch the response from the backend
+        const response = await fetch('http://localhost:3000/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: userInput }),
+        });
 
-    progressBar.style.display = 'none';
+        progressBar.style.display = 'none';
 
-    const data = await response.json();
-    const botMessage = document.createElement('div');
-    botMessage.className = 'message bot-message';
-    document.getElementById('messages').appendChild(botMessage);
+        const data = await response.json();
+        console.log('ChatGPT Response:', data); // Log the exact response
 
-    const words = formatResponse(data.response).split(' ');
-    let index = 0;
+        // Add the bot's message to the chat
+        const botMessage = document.createElement('div');
+        botMessage.className = 'message bot-message';
+        botMessage.innerHTML = formatResponse(data.response); // Format the response
+        messagesContainer.appendChild(botMessage);
 
-    function displayNextWord() {
-        if (index < words.length) {
-            botMessage.innerHTML += words[index] + ' ';
-            index++;
-            setTimeout(displayNextWord, 100); // Adjust the delay as needed
-        } else {
-            // Scroll to the bottom of the messages container
-            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
-        }
+        // Scroll to the bottom of the messages container
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    } catch (error) {
+        console.error('Error fetching response:', error);
+        progressBar.style.display = 'none';
     }
-
-    displayNextWord();
 }
 
 function formatResponse(response) {
@@ -51,11 +58,22 @@ function formatResponse(response) {
     return response.replace(/\n/g, '<br>').replace(/•/g, '<br>•');
 }
 
+// Handle the send button click
 document.getElementById('send-button').addEventListener('click', sendMessage);
 
+// Handle the Enter and Shift + Enter keys
 document.getElementById('user-input').addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
-        sendMessage();
+        if (event.shiftKey) {
+            // Allow Shift + Enter to insert a new line
+            event.preventDefault();
+            const input = document.getElementById('user-input');
+            input.value += '\n'; // Add a new line to the input box
+        } else {
+            // Submit the input on Enter
+            event.preventDefault();
+            sendMessage();
+        }
     }
 });
 
@@ -81,4 +99,18 @@ recognition.addEventListener('speechend', () => {
 
 recognition.addEventListener('error', (event) => {
     console.error('Speech recognition error detected: ' + event.error);
+});
+
+document.getElementById('clear-button').addEventListener('click', () => {
+    const messagesContainer = document.getElementById('messages');
+    messagesContainer.innerHTML = ''; // Clear all messages
+
+    // Reset the placeholder text
+    const placeholder = document.createElement('div');
+    placeholder.id = 'placeholder-text';
+    placeholder.textContent = 'Welcome! What can I help you with?';
+    messagesContainer.appendChild(placeholder);
+
+    // Clear the input box
+    document.getElementById('user-input').value = '';
 });

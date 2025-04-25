@@ -11,24 +11,32 @@
         <nav id="sidebar">
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="/about.html">About</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
         <div id="chat-container">
-            <div id="messages"></div>
+            <div id="messages">
+                <div id="placeholder-text">Welcome! What can I help you with?</div>
+            </div>
             <div id="input-container">
-                <input type="text" id="user-input" placeholder="Type your message here...">
+                <textarea id="user-input" placeholder="Type your message here..."></textarea>
                 <button id="send-button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20px" height="20px">
                         <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
                     </svg>
                 </button>
                 <button id="voice-button">🎤</button>
+                <button id="clear-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20px" height="20px">
+                        <path d="M3 6h18v2H3V6zm2 3h14v12H5V9zm4 2v8h2v-8H9zm4 0v8h2v-8h-2z"/>
+                    </svg>
+                </button>
             </div>
             <div id="progress-bar"><div></div></div>
         </div>
+        
     </div>
     <script src="./scripts.js"></script>
 </body>
