@@ -13,14 +13,14 @@ This project is a simple chatbot web application with a clean and responsive use
 ## Project Structure
 
 ChatBot/ 
-  ├── index.html # Main HTML file for the chatbot interface 
-  ├── styles.css # CSS file for styling the application 
-  ├── chatbot.js # Main JavaScript file for chatbot functionality 
-  ├── server.js # Node.js server file (if applicable) 
-  ├── assets/ # Folder containing images, icons, and other assets │ 
-  ├── logo.png # Example logo file 
-  ├── README.md # Project documentation 
-  └── package.json # Node.js dependencies and scripts
+  ─ index.html # Main HTML file for the chatbot interface 
+  ─ styles.css # CSS file for styling the application 
+  ─ chatbot.js # Main JavaScript file for chatbot functionality 
+  ─ server.js # Node.js server file (if applicable) 
+  ─ assets/ # Folder containing images, icons, and other assets │ 
+  ─ logo.png # Example logo file 
+  ─ README.md # Project documentation 
+  ─ package.json # Node.js dependencies and scripts
 
 ## How to Run
 
