@@ -14,6 +14,6 @@ This project is a simple chatbot web application with a clean and responsive use
 
 ## How to Run
 
-- Clone the repository: git clone https://anish1306@github.com/anish1306/ChatBot.git
-- Run node chatbot.js
-- Open index.html file
+- Clone the repository: **git clone https://anish1306@github.com/anish1306/ChatBot.git**
+- Run: **node chatbot.js**
+- Open **index.html** file
