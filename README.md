@@ -16,7 +16,7 @@ ChatBot/
   - index.html # Main HTML file for the chatbot interface 
   - styles.css # CSS file for styling the application 
   - chatbot.js # Main JavaScript file for chatbot functionality 
-  - server.js # Node.js server file (if applicable) 
+  - scripts.js # Application JS files
   - assets/ # Folder containing images, icons, and other assets │ 
   - logo.png # Example logo file 
   - README.md # Project documentation 
