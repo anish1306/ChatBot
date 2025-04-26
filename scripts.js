@@ -113,3 +113,15 @@ document.getElementById('clear-button').addEventListener('click', () => {
     // Clear the input box
     document.getElementById('user-input').value = '';
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const userInput = document.getElementById("user-input");
+
+    // Detect "Enter" key press and blur the input on mobile
+    userInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Prevent default behavior (e.g., adding a new line)
+            userInput.blur(); // Remove focus to close the keyboard
+        }
+    });
+});
