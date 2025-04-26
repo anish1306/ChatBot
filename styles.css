@@ -122,18 +122,19 @@ body {
 }
 
 .bot-message {
-    align-self: stretch; /* Make the bot message take up the full width */
-    color: black;
-    border-left: 4px solid #8d8f91;
-    padding: 12px; /* Add padding for better readability */
-    border-radius: 8px; /* Add slightly rounded corners */
-    margin-bottom: 15px; /* Add space below the bot's message */
-    margin-top: 10px; /* Add space above the bot's message */
-    font-family: 'Open Sans', sans-serif; /* Use a clean and modern font */
-    font-size: 16px; /* Adjust font size for better readability */
-    line-height: 1.5; /* Add line height for better spacing between lines */
-    background-color: #f9f9f9; /* Add a subtle background color */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for a modern look */
+    align-self: flex-start;
+    background-color: #f1f3f5;
+    color: #000;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 75%;
+    word-wrap: break-word;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 #input-container {
@@ -213,6 +214,16 @@ body {
 @keyframes progress {
     0% { width: 0; }
     100% { width: 100%; }
+}
+
+/* Typing animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 #clear-button {

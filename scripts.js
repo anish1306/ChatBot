@@ -37,18 +37,33 @@ async function sendMessage() {
         progressBar.style.display = 'none';
 
         const data = await response.json();
+        console.log('ChatGPT Response:', data); // Log the exact response
 
-        // Add the bot's message to the chat
+        // Add the bot's message to the chat with a typing effect
         const botMessage = document.createElement('div');
         botMessage.className = 'message bot-message';
-        botMessage.innerHTML = formatResponse(data.response); // Format the response
         messagesContainer.appendChild(botMessage);
 
         // Scroll to the bottom of the messages container
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Display the response word by word
+        await typeResponse(botMessage, data.response);
+
+        // Scroll to the bottom again after the typing effect
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     } catch (error) {
         console.error('Error fetching response:', error);
         progressBar.style.display = 'none';
+    }
+}
+
+// Function to display the response word by word
+async function typeResponse(element, response) {
+    const words = response.split(' '); // Split the response into words
+    for (const word of words) {
+        element.innerHTML += `${word} `; // Add each word with a space
+        await new Promise((resolve) => setTimeout(resolve, 50)); // Delay between words
     }
 }
 
@@ -117,7 +132,7 @@ document.getElementById('clear-button').addEventListener('click', () => {
 document.addEventListener("DOMContentLoaded", () => {
     const userInput = document.getElementById("user-input");
 
-    // Detect "Enter" key press and submit the input on mobile
+    // Detect "Enter" key press and blur the input on mobile
     userInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             event.preventDefault(); // Prevent default behavior (e.g., adding a new line)
