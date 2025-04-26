@@ -263,9 +263,9 @@ body {
 @media (max-width: 480px) {
     #chat-container {
         width: 100%;
-        height: calc(100vh - env(safe-area-inset-bottom)); /* Adjust height to account for safe area */
+        height: 70%;
         border-radius: 10px; /* Add smaller curved edges for mobile */
-        margin-bottom: env(safe-area-inset-bottom); /* Add spacing for the safe area */
+        margin: auto;
     }
 
     #messages {
