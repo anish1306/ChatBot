@@ -263,12 +263,14 @@ body {
 @media (max-width: 480px) {
     #chat-container {
         width: 100%;
-        height: 100%;
-        border-radius: 0;
+        height: calc(100vh - env(safe-area-inset-bottom)); /* Adjust height to account for safe area */
+        border-radius: 10px; /* Add smaller curved edges for mobile */
+        margin-bottom: env(safe-area-inset-bottom); /* Add spacing for the safe area */
     }
 
     #messages {
         padding: 10px;
+        border-radius: 15px;
     }
 
     #user-input {
