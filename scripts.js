@@ -26,7 +26,7 @@ async function sendMessage() {
 
     try {
         // Fetch the response from the backend
-        const response = await fetch('http://localhost:3000/chat', {
+        const response = await fetch('https://chatbot-s5zd.onrender.com/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
