@@ -37,7 +37,6 @@ async function sendMessage() {
         progressBar.style.display = 'none';
 
         const data = await response.json();
-        console.log('ChatGPT Response:', data); // Log the exact response
 
         // Add the bot's message to the chat
         const botMessage = document.createElement('div');
