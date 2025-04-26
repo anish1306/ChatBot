@@ -117,10 +117,11 @@ document.getElementById('clear-button').addEventListener('click', () => {
 document.addEventListener("DOMContentLoaded", () => {
     const userInput = document.getElementById("user-input");
 
-    // Detect "Enter" key press and blur the input on mobile
+    // Detect "Enter" key press and submit the input on mobile
     userInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
-            //event.preventDefault(); // Prevent default behavior (e.g., adding a new line)
+            event.preventDefault(); // Prevent default behavior (e.g., adding a new line)
+            sendMessage(); // Submit the input
             userInput.blur(); // Remove focus to close the keyboard
         }
     });
